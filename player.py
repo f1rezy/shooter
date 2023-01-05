@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(WIDTH // 2, HEIGHT // 2))
         self.speedx = 0
         self.speedy = 0
+        self.hp = 100
 
     def update(self):
         self.speedx = 0

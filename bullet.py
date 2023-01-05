@@ -2,8 +2,8 @@ import pygame
 
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
+    def __init__(self, *group):
+        super().__init__(*group)
         self.image = pygame.Surface((5, 5))
         self.image.fill(pygame.Color("White"))
         self.rect = self.image.get_rect(center=(WIDTH // 2, HEIGHT // 2))
@@ -36,3 +36,6 @@ class Bullet(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
         self.rect.x += self.speedx
         self.rect.y += self.speedy
+
+    def __call__(self, args):
+        return
