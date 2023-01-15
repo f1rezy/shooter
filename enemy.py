@@ -11,11 +11,14 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(self.rand_x, 10))
         self.speedy = 0
 
-    def update(self):
-        self.speedy = 0
-        if self.rect.bottom != 1100:
-            self.speedy = 2
-        elif self.rect.bottom == 1100:
+    def update(self, speed, group):
+        if pygame.sprite.spritecollideany(self, group):
             self.kill()
 
+        self.speedy = 0
+
+        if self.rect.bottom >= 500:
+            self.kill()
+
+        self.speedy = speed
         self.rect.centery += self.speedy
