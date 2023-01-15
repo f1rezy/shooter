@@ -2,9 +2,18 @@ import pygame
 from player import Player
 from bullet import Bullet
 from enemy import Enemy
+from load_image import load_image
 
 SIZE = WIDTH, HEIGHT = 640, 480
 FPS = 60
+enemy_images = {
+    '1': load_image('enemy1.png'),
+    '2': load_image('enemy1.png'),
+    '3': load_image('enemy2.png'),
+    '4': load_image('enemy2.png'),
+    '5': load_image('enemy3.png'),
+    '6': load_image('enemy3.png'),
+}
 
 
 def text(surf, text, size, x, y):
@@ -44,7 +53,7 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Bullet(bullets_group, (player.rect.centerx, player.rect.top))
             if event.type == time:
-                enemy = Enemy()
+                enemy = Enemy(enemy_images[str(level)])
                 enemy_group.add(enemy)
 
         if player.hp <= 0:
@@ -66,8 +75,6 @@ if __name__ == '__main__':
 
         hits = pygame.sprite.groupcollide(enemy_group, bullets_group, True, True)
         for hit in hits:
-            enemy = Enemy()
-            enemy_group.add(enemy)
             global_score += 1
             score += 1
 

@@ -3,11 +3,10 @@ from random import randrange
 
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, image):
         super().__init__()
-        self.image = pygame.Surface((20, 20))
-        self.image.fill(pygame.Color("Red"))
-        self.rand_x = randrange(50, 1230, 100)
+        self.image = pygame.transform.scale(image, (50, 70))
+        self.rand_x = randrange(50, 590, 50)
         self.rect = self.image.get_rect(center=(self.rand_x, 10))
         self.speedy = 0
 

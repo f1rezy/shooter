@@ -1,12 +1,12 @@
 import pygame
+from load_image import load_image
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, *group):
         super().__init__(*group)
-        self.image = pygame.Surface((20, 20))
-        self.image.fill(pygame.Color("Green"))
-        self.rect = self.image.get_rect(center=(640 // 2, 480 - 20))
+        self.image = pygame.transform.scale(load_image("elf_r.png"), (49, 85))
+        self.rect = self.image.get_rect(center=(640 // 2, 480 - 60))
         self.speedx = 0
         self.hp = 100
 
@@ -19,8 +19,10 @@ class Player(pygame.sprite.Sprite):
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_a]:
             self.speedx = -5
+            self.image = pygame.transform.scale(load_image("elf_l.png"), (49, 85))
         if keystate[pygame.K_d]:
             self.speedx = 5
+            self.image = pygame.transform.scale(load_image("elf_r.png"), (49, 85))
 
         self.rect.centerx += self.speedx
 
