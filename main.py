@@ -54,7 +54,8 @@ if __name__ == '__main__':
             level += 1
             score = 0
             speed += 2
-            timer /= 2
+            timer //= 2
+            pygame.time.set_timer(time, timer)
             player.hp += 20
             if player.hp > 100:
                 player.hp -= (player.hp % 100)
