@@ -59,7 +59,6 @@ if __name__ == '__main__':
                 enemy_group.add(enemy)
 
         if player.hp <= 0:
-            print(global_score)
             write(global_score)
             screen_end(screen)
             running = False
