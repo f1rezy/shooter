@@ -13,7 +13,7 @@ def screen_start(screen):
     screen.blit(fon, fon_rect)
 
     font_name = pygame.font.Font(None, 60)
-    name_text = font_name.render('dungeon shooter', True, (100, 150, 250))
+    name_text = font_name.render('dungeon shooter', True, (100, 200, 250))
     name_rect = name_text.get_rect()
     name_rect.center = fon_rect.center
     name_rect.top -= 200
@@ -21,11 +21,11 @@ def screen_start(screen):
     font_ruls = pygame.font.Font(None, 22)
     ruls_text = font_ruls.render('Перед началом игры убедитесь,'
                                  ' что ваши силы равны тому чтобы пройти'
-                                 ' эту игру', True, (100, 100, 250))
+                                 ' эту игру', True, (100, 150, 250))
     ruls_rect = ruls_text.get_rect(center=(320, 100))
 
     font_start = pygame.font.Font(None, 30)
-    start_text = font_start.render('Для начала игры, нажмите любую клавишу клавиатуры', True, (100, 100, 250))
+    start_text = font_start.render('Для начала игры, нажмите любую клавишу клавиатуры', True, (100, 150, 250))
     start_rect = start_text.get_rect(center=(320, 240))
 
     key_a = load_image('key_a.png')
