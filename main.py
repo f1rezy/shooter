@@ -1,24 +1,23 @@
-import sys
-
 import pygame
-from player import Player
-from bullet import Bullet
-from enemy import Enemy
+from src.classes.player import Player
+from src.classes.bullet import Bullet
+from src.classes.enemy import Enemy
 from load_image import load_image
-from screen_start import screen_start
-from screen_end import screen_end
-from text import text
-from write_res import write
+from src.hilfs.screen_start import screen_start
+from src.hilfs.screen_end import screen_end
+from src.hilfs.text import text
+from src.hilfs.write_res import write
+from src.hilfs.load_background import generate_level, tiles_group
 
 SIZE = WIDTH, HEIGHT = 640, 480
 FPS = 60
 enemy_images = {
+    '0': load_image('enemy1.png'),
     '1': load_image('enemy1.png'),
-    '2': load_image('enemy1.png'),
+    '2': load_image('enemy2.png'),
     '3': load_image('enemy2.png'),
-    '4': load_image('enemy2.png'),
+    '4': load_image('enemy3.png'),
     '5': load_image('enemy3.png'),
-    '6': load_image('enemy3.png'),
 }
 
 if __name__ == '__main__':
@@ -41,8 +40,9 @@ if __name__ == '__main__':
     global_score = 0
     score = 0
     level = 1
-    speed = 2
+    speed = 1
 
+    generate_level()
     screen_start(screen)
     running = True
     while running:
@@ -55,7 +55,7 @@ if __name__ == '__main__':
                     Bullet(bullets_group, (player.rect.centerx, player.rect.top))
 
             if event.type == time:
-                enemy = Enemy(enemy_images[str(level)])
+                enemy = Enemy(enemy_images[str(level % 6)])
                 enemy_group.add(enemy)
 
         if player.hp <= 0:
@@ -67,14 +67,15 @@ if __name__ == '__main__':
         if score == 10:
             level += 1
             score = 0
-            speed += 2
-            timer //= 2
+            speed += 1
+            timer = round(timer // 1.5)
             pygame.time.set_timer(time, timer)
             player.hp += 20
             if player.hp > 100:
                 player.hp -= (player.hp % 100)
 
-        screen.fill(pygame.Color("Black"))
+        tiles_group.draw(screen)
+        tiles_group.update()
         player_group.draw(screen)
         player_group.update(enemy_group)
 
