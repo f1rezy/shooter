@@ -18,7 +18,7 @@ def screen_end(screen):
     name_rect.center = fon_rect.center
     name_rect.top -= 200
 
-    last_score = open('../../results.txt').readlines()
+    last_score = open('results.txt').readlines()
     font_last = pygame.font.Font(None, 50)
     last_text = font_last.render(f'Ваш счёт - {last_score[-1]}', True, (100, 200, 250))
     last_rect = last_text.get_rect()
